@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+	<h2>Music List</h2>
+	
+	<form action="" method="POST">
+		{% csrf_token %}
+                {{ form }}
+		<input type='submit' value='SEARCH'/>
+	</form>
+
+	<ul>
+		{% for music in music_list %}
+			{% if music.is_recomm != 1 %}
+				<li>{{ music.artist }} - {{music.track}}</li>
+			{% else %}
+				<li><p style="color:red; display:inline">*recomm*</p> {{ music.artist }} - {{music.track}}</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+{% endblock %}
